@@ -1,0 +1,184 @@
+package pirpleProjects;
+
+import java.util.Scanner;
+
+public class ElevatorAandB {
+
+	static int floorA;
+	static int floorB;
+	static int current_floor;
+
+	public static void main(String[] args) {
+		Scanner reader=new Scanner(System.in);
+		
+		ElevatorAandB run=new ElevatorAandB();
+		
+		
+		System.out.println("Press Botton to call the elavator: ");
+	    String Call=reader.next();
+		
+
+	    floorA = (int) (Math.random() * 10 + 1);
+	    floorB = (int) (Math.random() * 9 + 1);
+
+	    System.out.println("Elevator A :" +floorA + " floor");
+	    System.out.println("Elevator B :" +floorB + " floor");
+	    int Calling_From_floor=(int) (Math.random() * 10 + 1); //current elevator floor
+	   
+	    
+	    System.out.println("Person Calling the elvator  : " + Calling_From_floor +"th Floor!");
+	    current_floor = Calling_From_floor;
+	    
+	    //System.out.println("Which Floor is the user : ");//ask the user current floor
+	    //int current_floor =reader.nextInt(); //enter the floor number
+	    
+	    int A=floorA - Calling_From_floor;
+	    int B=floorB - Calling_From_floor;
+	    
+	    
+	        
+	    
+	 //if(floorA == current_floor )
+	    if (A < B )
+		    {
+		    	run.A();
+		    }
+	    
+	    
+	    else if (B < A) 
+			    	
+			{
+			   	run.B(); 
+			    				    	
+			}
+			    
+
+	    else if (A == B) 
+			    {
+	    			run.A();
+			    }
+	    
+	    
+			  }	
+	
+	public void A ()
+	{
+		Scanner reader=new Scanner(System.in);
+		if (floorA == current_floor )
+	    {
+	        System.out.println("Enter the elevator A"); //open the elevator
+	    }
+	      	    
+	    else
+	    {
+	    	MoveElevator_A(current_floor);
+	    }
+
+
+	    System.out.println("Door Open ");
+	    System.out.println("Which floor do you want to go (0-10) where -1 = basement");
+	    int target_floor = reader.nextInt();
+	    System.out.println("Door closed");
+	    
+	    
+	    
+
+	    MoveElevator_A(target_floor);
+	    
+	    
+	}
+			 
+	public void B()//run A 
+	{
+		Scanner reader=new Scanner(System.in);
+		
+		if(floorB == current_floor )
+	    {
+	        System.out.println("Enter the elevator B"); //open the elevator
+	    }
+	    
+	    	    
+	    else
+	    {
+	    	MoveElevator_B(current_floor);
+	    }
+	    
+	    
+
+	    System.out.println("Door Open ");
+	    System.out.println("Which floor do you want to go (0-10) where -1 = basement");
+	    int target_floor = reader.nextInt();
+	    System.out.println("Door closed");
+	    
+	    if (target_floor==10)
+	    {
+	    	Stop();
+	    }
+	    
+	    else 
+	    {
+
+	    MoveElevator_B(target_floor);
+	    }
+    }
+	
+	
+
+	private static void Stop() {
+		
+		ElevatorAandB run =new ElevatorAandB();
+		
+		System.out.println("Please enter number 1-9");
+		 run.B();
+		return;
+		
+		
+
+	}
+
+	public static void MoveElevator_A(int target_floor) {
+		int direction = 0;
+		if (target_floor > floorA) {
+			System.out.println("The elevator A moving up...");
+			direction = 1;
+
+		}
+
+		else {
+			System.out.println("The elevator A moving down...");
+			direction = -1;
+		}
+
+		while (target_floor != floorA) {
+			floorA += direction;
+			System.out.println(floorA);
+		}
+
+		System.out.println("The elevator A has arrived");
+	}
+	
+
+	public static void MoveElevator_B(int target_floor) {
+		
+		
+		int direction = 0;
+		if (target_floor > floorA) {
+			System.out.println("The elevator B moving up...");
+			direction = 1;
+
+		}
+
+		else {
+			System.out.println("The elevator B moving down...");
+			direction = -1;
+		}
+
+		while (target_floor != floorA) {
+			floorA += direction;
+			System.out.println(floorA);
+		}
+
+		System.out.println("The elevator B has arrived");
+	}
+
+}
